@@ -1,0 +1,55 @@
+name:                converter
+version:             0.1.0.0
+github:              "pineapplevendor/converter"
+license:             BSD3
+author:              "pineapplevendor"
+maintainer:          "echavis@umich.edu"
+copyright:           "nah"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            huh?
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/pineapplevendor/converter#readme>
+
+dependencies:
+- text
+- base >= 4.7 && < 5
+- bytestring
+- base64-bytestring
+- snap
+- snap-server
+- snap-core
+
+library:
+  source-dirs: src
+
+executables:
+  converter-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - converter
+
+tests:
+  converter-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - converter
+

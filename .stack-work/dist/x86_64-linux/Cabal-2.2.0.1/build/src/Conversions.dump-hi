@@ -1,0 +1,261 @@
+
+==================== FINAL INTERFACE ====================
+2018-12-06 05:36:06.483267813 UTC
+
+interface converter-0.1.0.0-6quKOSybS28GOmCBDd3S5o:Conversions 8044
+  interface hash: 1443530892c4bc9085e11bd43cf24751
+  ABI hash: a8972789eef58fee41612810a142099e
+  export-list hash: dd0548fdbdebdc3d0d0bdc9be94517c3
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 1f596daf84c7527444ae092b33472386
+  opt_hash: 14e536840aca4e889cad654e6f9b79c1
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Conversions.asciiToBinary
+  Conversions.base64ToBinary
+  Conversions.binaryToAscii
+  Conversions.binaryToBase64
+  Conversions.binaryToDecimal
+  Conversions.binaryToHex
+  Conversions.decimalToBinary
+  Conversions.hexToBinary
+module dependencies:
+package dependencies: array-0.5.2.0 base-4.11.1.0*
+                      base64-bytestring-1.0.0.1* bytestring-0.10.8.2* deepseq-1.4.3.0
+                      ghc-prim-0.5.2.0 integer-gmp-1.0.2.0
+orphans: base-4.11.1.0:GHC.Float base-4.11.1.0:GHC.Base
+family instance modules: base-4.11.1.0:Control.Applicative
+                         base-4.11.1.0:Data.Complex base-4.11.1.0:Data.Functor.Compose
+                         base-4.11.1.0:Data.Functor.Const
+                         base-4.11.1.0:Data.Functor.Identity
+                         base-4.11.1.0:Data.Functor.Product base-4.11.1.0:Data.Functor.Sum
+                         base-4.11.1.0:Data.Monoid base-4.11.1.0:Data.Semigroup
+                         base-4.11.1.0:Data.Semigroup.Internal base-4.11.1.0:Data.Version
+                         base-4.11.1.0:Data.Void base-4.11.1.0:GHC.Generics
+                         base-4.11.1.0:GHC.IO.Exception
+import  -/  base-4.11.1.0:Data.Char 3e89818e2b8ef1a2cc5393163484da72
+import  -/  base-4.11.1.0:Data.List 83dc843e47bfc0c5af51e19c6f3476d5
+import  -/  base-4.11.1.0:Data.OldList 1b35aa3c6805ff7c8887a35a866fe006
+import  -/  base-4.11.1.0:Data.Tuple 3af66f3ac61ed95ba8a3a3f68ebc5003
+import  -/  base-4.11.1.0:GHC.Base 604111500e81281298777e721c75643b
+import  -/  base-4.11.1.0:GHC.Enum 8824828888f5a89ecc9e7c73f05f3151
+import  -/  base-4.11.1.0:GHC.List 1e4357702d8d00cded0703bd293e50e8
+import  -/  base-4.11.1.0:GHC.Show 73be67392447c974f19c3befd83c46c0
+import  -/  base-4.11.1.0:Numeric 331f4a25ce2a0412c13064bb0891b578
+import  -/  base-4.11.1.0:Prelude 0750c25585e2b797cd78291d423d39dd
+import  -/  base64-bytestring-1.0.0.1:Data.ByteString.Base64 22c0abcca0198a7ca22353845df5443c
+import  -/  bytestring-0.10.8.2:Data.ByteString.Char8 dc3435b7390ba2e9c793577f99c0da13
+import  -/  ghc-prim-0.5.2.0:GHC.Classes 122abfcd7450c6c11602933c9ca5f80d
+37c9e9330d49bad46df185a823884225
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Conversions.$trModule3
+                   Conversions.$trModule1) -}
+e1848068f6c19f8eb2666b028c327e4e
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Conversions.$trModule2) -}
+9ce9f60b4cec867de0d56b467f494ea2
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Conversions"#) -}
+3d6ff964b8a2b127ec8479bb79483aab
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Conversions.$trModule4) -}
+042f93542b14695211ba0996f3cde3fa
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("converter-0.1.0.0-6quKOSybS28GOmCBDd3S5o"#) -}
+65be1e4bec7f3ac2d7440df4192662ad
+  $wgo :: GHC.Prim.Int# -> [GHC.Types.Int] -> GHC.Types.Int
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,U><S,1*U>m,
+     Inline: [0] -}
+13d2818084feb8b0db605b63987cab2b
+  asciiToBinary :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 case Conversions.asciiToBinary_go xs of wild {
+                   [] -> GHC.Types.[] @ GHC.Types.Char : ds1 xs1 -> xs1 }) -}
+3605dfb8ffd0a5ac08aca64924cdde83
+  asciiToBinary_go :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+a64a49db29f0ff4a976c53e63033f0d1
+  base64ToBinary :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 case GHC.List.$wlenAcc @ GHC.Types.Char xs 0# of ww { DEFAULT ->
+                 case Data.ByteString.Internal.$wunsafePackLenChars
+                        ww
+                        xs of ww1 { Data.ByteString.Internal.PS ww2 ww3 ww4 ww5 ->
+                 case Data.ByteString.Base64.Internal.$wdecodeLenientWithTable
+                        Data.ByteString.Base64.decodeFP
+                        ww2
+                        ww3
+                        ww4
+                        ww5 of ww6 { Data.ByteString.Internal.PS ww7 ww8 ww9 ww10 ->
+                 case Conversions.base64ToBinary_go
+                        (Data.ByteString.Internal.$wunpackAppendCharsLazy
+                           ww7
+                           ww8
+                           ww9
+                           ww10
+                           (GHC.Types.[] @ GHC.Types.Char)) of wild {
+                   [] -> GHC.Types.[] @ GHC.Types.Char : ds1 xs1 -> xs1 } } } }) -}
+70c402b1c8c14c89ffe7dc824e7c1873
+  base64ToBinary_go :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+66bbda8c11503557953babd46ddc0993
+  binaryToAscii :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 Conversions.binaryToAscii_go xs) -}
+06825163568bb32988cd7d8cf718d623
+  binaryToAscii_go :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+8a3ed5cd047feb21776fa05ac9cd8515
+  binaryToBase64 :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 case Data.ByteString.Base64.encode1 of ww { Data.ByteString.Base64.Internal.ET ww1 ww2 ->
+                 case ww1 of ww3 { GHC.ForeignPtr.ForeignPtr ww4 ww5 ->
+                 case ww2 of ww6 { GHC.ForeignPtr.ForeignPtr ww7 ww8 ->
+                 let {
+                   cs :: [GHC.Types.Char] = Conversions.binaryToAscii_go xs
+                 } in
+                 case GHC.List.$wlenAcc @ GHC.Types.Char cs 0# of ww11 { DEFAULT ->
+                 case Data.ByteString.Internal.$wunsafePackLenChars
+                        ww11
+                        cs of ww9 { Data.ByteString.Internal.PS ww10 ww12 ww13 ww14 ->
+                 case Data.ByteString.Base64.Internal.$wencodeWith
+                        ww4
+                        ww5
+                        ww7
+                        ww8
+                        ww10
+                        ww12
+                        ww13
+                        ww14 of ww15 { Data.ByteString.Internal.PS ww16 ww17 ww18 ww19 ->
+                 Data.ByteString.Internal.$wunpackAppendCharsLazy
+                   ww16
+                   ww17
+                   ww18
+                   ww19
+                   (GHC.Types.[] @ GHC.Types.Char) } } } } } }) -}
+d6f31231d841161b9879a09272a9cefb
+  binaryToDecimal :: [GHC.Types.Char] -> GHC.Types.Int
+  {- Arity: 1, Strictness: <S,1*U>m, Inline: [0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: [GHC.Types.Char]) ->
+                 case Text.ParserCombinators.ReadP.$fAlternativeP_$srun
+                        @ GHC.Types.Int
+                        w
+                        Conversions.binaryToDecimal1 of wild {
+                   [] -> case GHC.List.badHead ret_ty GHC.Types.Int of {}
+                   : x ds1 -> case x of wild1 { (,) x1 ds2 -> x1 } }) -}
+8184bbcf9ecd3ea5c1ce6938adfb95b6
+  binaryToDecimal1 ::
+    GHC.Types.Char -> Text.ParserCombinators.ReadP.P GHC.Types.Int
+  {- Arity: 1, Strictness: <S(S),1*U(U)>,
+     Unfolding: (\ (a3 :: GHC.Types.Char)[OneShot] ->
+                 case a3 of wild { GHC.Types.C# x ->
+                 let {
+                   $j :: Text.ParserCombinators.ReadP.P GHC.Types.Int <join 0>
+                   = case Text.ParserCombinators.ReadP.$wmunch
+                            Conversions.isValidBinaryDigit
+                            @ GHC.Types.Int
+                            (\ (a4 :: GHC.Base.String) ->
+                             Text.ParserCombinators.ReadP.Result
+                               @ GHC.Types.Int
+                               (Conversions.$wgo
+                                  0#
+                                  (GHC.Base.map
+                                     @ GHC.Types.Char
+                                     @ GHC.Types.Int
+                                     Data.Char.digitToInt
+                                     (GHC.Types.: @ GHC.Types.Char wild a4)))
+                               (Text.ParserCombinators.ReadP.Fail
+                                  @ GHC.Types.Int)) of ww { Unit# ww1 ->
+                     Text.ParserCombinators.ReadP.Look @ GHC.Types.Int ww1 }
+                 } in
+                 case x of wild1 {
+                   DEFAULT -> Text.ParserCombinators.ReadP.Fail @ GHC.Types.Int
+                   '0'# -> $j
+                   '1'# -> $j } }) -}
+a761a8156001e19126e08116858f5b44
+  binaryToHex :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <L,1*U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 Numeric.showIntAtBase
+                   @ GHC.Types.Int
+                   GHC.Real.$fIntegralInt
+                   GHC.Show.$fShowInt
+                   Conversions.binaryToHex1
+                   GHC.Show.intToDigit
+                   (Conversions.binaryToDecimal xs)
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+15edf711cdeb9dfdd015d1a1e221e6e2
+  binaryToHex1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 16#) -}
+04e72023034f43b1cc00ff542ca73e0c
+  decimalToBinary :: GHC.Types.Int -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: GHC.Types.Int) ->
+                 Numeric.showIntAtBase
+                   @ GHC.Types.Int
+                   GHC.Real.$fIntegralInt
+                   GHC.Show.$fShowInt
+                   Conversions.decimalToBinary1
+                   GHC.Show.intToDigit
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+deb2dd962d66c5e6343854076761e1bc
+  decimalToBinary1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 2#) -}
+7c22f3e4a6789ff056a4c7af90ce5566
+  hexToBinary :: [GHC.Types.Char] -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <L,1*U>,
+     Unfolding: (\ (xs :: [GHC.Types.Char]) ->
+                 Numeric.showIntAtBase
+                   @ GHC.Types.Int
+                   GHC.Real.$fIntegralInt
+                   GHC.Show.$fShowInt
+                   Conversions.decimalToBinary1
+                   GHC.Show.intToDigit
+                   (case Text.Read.Lex.$wreadIntP'
+                           @ GHC.Types.Int
+                           GHC.Classes.$fEqInt
+                           GHC.Num.$fNumInt
+                           Conversions.binaryToHex1
+                           @ GHC.Types.Int
+                           (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
+                              @ GHC.Types.Int) of ww { Unit# ww1 ->
+                    case Text.ParserCombinators.ReadP.$fAlternativeP_$srun
+                           @ GHC.Types.Int
+                           xs
+                           ww1 of wild {
+                      [] -> case GHC.List.badHead ret_ty GHC.Types.Int of {}
+                      : x ds1 -> case x of wild1 { (,) x1 ds2 -> x1 } } })
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+f57e710b17a028b17e5a0a35d9f49b09
+  isValidBinaryDigit :: GHC.Types.Char -> GHC.Types.Bool
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: GHC.Types.Char) ->
+                 case x of wild { GHC.Types.C# x1 ->
+                 case x1 of wild1 {
+                   DEFAULT -> GHC.Types.False
+                   '0'# -> GHC.Types.True
+                   '1'# -> GHC.Types.True } }) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
