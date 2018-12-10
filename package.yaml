@@ -27,6 +27,7 @@ dependencies:
 - snap
 - snap-server
 - snap-core
+- containers
 
 library:
   source-dirs: src

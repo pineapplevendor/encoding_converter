@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 88be5a8e86b7ac64ce274bede7852cd1a835abae755f11bc28d431a42c4f37ec
+-- hash: 2ccd9400da02e05e6a44b952e5759cea35ded5ef6342d3274fc9b6ef5987cfac
 
 name:           converter
 version:        0.1.0.0
@@ -37,6 +37,7 @@ library
       base >=4.7 && <5
     , base64-bytestring
     , bytestring
+    , containers
     , snap
     , snap-core
     , snap-server
@@ -54,6 +55,7 @@ executable converter-exe
       base >=4.7 && <5
     , base64-bytestring
     , bytestring
+    , containers
     , converter
     , snap
     , snap-core
@@ -73,6 +75,7 @@ test-suite converter-test
       base >=4.7 && <5
     , base64-bytestring
     , bytestring
+    , containers
     , converter
     , snap
     , snap-core

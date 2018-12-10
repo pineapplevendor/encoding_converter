@@ -2,8 +2,8 @@ flags: {}
 packages:
 - .
 extra-deps:
-- heist-1.1.0.1
 - map-syntax-0.3
+- heist-1.1.0.1
 - pwstore-fast-2.4.4
 - snap-1.1.1.0
 - xmlhtml-0.2.5.2
