@@ -28,6 +28,7 @@ dependencies:
 - snap-server
 - snap-core
 - containers
+- aeson
 
 library:
   source-dirs: src

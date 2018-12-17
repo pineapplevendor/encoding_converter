@@ -1,33 +1,65 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Conversions
 (
- hexToBinary,
- binaryToHex,
- decimalToBinary,
- binaryToDecimal,
- asciiToBinary,
- binaryToAscii,
- binaryToBase64,
- base64ToBinary,
+ binaryToEncodings, 
+ hexToEncodings,
+ decimalToEncodings,
+ base64ToEncodings,
+ asciiToEncodings,
 ) where
 
 import Numeric
 import Data.Char
+import Data.Aeson
+import Data.Aeson
 import Data.List
+import Data.Aeson
 import qualified Data.ByteString.Base64 as B64 (encode, decodeLenient)
 import qualified Data.ByteString.Char8 as Char8 (pack, unpack)
+import qualified Data.ByteString.Lazy.Internal as LazyBS (ByteString)
+import qualified Data.ByteString.Internal as StrictBS (ByteString)
+import qualified Data.ByteString.Lazy as LazyBS (toStrict)
 
-{-
-testing:
+data Encodings = Encodings {
+    binary :: String,
+    hex :: String,
+    decimal :: [Int],
+    base64 :: String,
+    ascii :: String
+} deriving Show
 
-hexToBinary $ binaryToHex $ decimalToBinary $ binaryToDecimal $ asciiToBinary $ binaryToAscii $ base64ToBinary $ binaryToBase64 "10101010"
--}
+instance ToJSON Encodings where 
+    toJSON (Encodings binary hex decimal base64 ascii) = object ["binary" .= binary, "hex" .= hex, 
+        "decimal" .= decimal, "base64" .= base64, "ascii" .= ascii]
+
+binaryToEncodings :: [Char] -> StrictBS.ByteString
+binaryToEncodings binary =
+    let hex = binaryToHex binary
+        decimal = map binaryToDecimal (words binary)
+        base64 = binaryToBase64 binary
+        ascii = binaryToAscii binary
+        encodings = (Encodings {binary = binary, hex = hex, decimal = decimal, base64 = base64, ascii = ascii })
+    in LazyBS.toStrict $ encode $ encodings
+
+hexToEncodings :: [Char] -> StrictBS.ByteString
+hexToEncodings hex = binaryToEncodings $ hexToBinary hex
+
+decimalToEncodings :: Int -> StrictBS.ByteString
+decimalToEncodings decimal = binaryToEncodings $ decimalToBinary decimal
+
+base64ToEncodings :: [Char] -> StrictBS.ByteString
+base64ToEncodings base64 = binaryToEncodings $ base64ToBinary base64
+
+asciiToEncodings :: [Char] -> StrictBS.ByteString 
+asciiToEncodings ascii = binaryToEncodings $ asciiToBinary ascii
 
 --hex related
 hexToBinary :: [Char] -> [Char]
-hexToBinary xs = decimalToBinary $ hexToDecimal xs
+hexToBinary xs = unwords $ map (decimalToBinary . hexToDecimal) (words xs)
 
 binaryToHex :: [Char] -> [Char]
-binaryToHex xs = decimalToHex $ binaryToDecimal xs
+binaryToHex xs = unwords $ map (decimalToHex . binaryToDecimal) (words xs)
 
 hexToDecimal :: [Char] -> Int
 hexToDecimal xs =  fst $ head $ readHex xs
@@ -48,11 +80,7 @@ isValidBinaryDigit x
     | x == '1' = True
     | otherwise = False
 
-{-
-ascii related
-output binary is separated by spaces to represent separate ascii chars
-input is expected to come as binary numbers separated by spaces
--}
+--ascii related
 asciiToBinary :: [Char] -> [Char]
 asciiToBinary xs = unwords $ map (decimalToBinary . fromEnum) xs 
 

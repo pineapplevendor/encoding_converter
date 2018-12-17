@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2ccd9400da02e05e6a44b952e5759cea35ded5ef6342d3274fc9b6ef5987cfac
+-- hash: 5abeaa46090bd59aa4e280cbb13b724431976498c144aab3d4734683dba33718
 
 name:           converter
 version:        0.1.0.0
@@ -28,13 +28,13 @@ source-repository head
 library
   exposed-modules:
       Conversions
-      Lib
   other-modules:
       Paths_converter
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
     , base64-bytestring
     , bytestring
     , containers
@@ -52,7 +52,8 @@ executable converter-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
     , base64-bytestring
     , bytestring
     , containers
@@ -72,7 +73,8 @@ test-suite converter-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
     , base64-bytestring
     , bytestring
     , containers
