@@ -33,11 +33,11 @@ instance ToJSON Encodings where toEncoding = genericToEncoding defaultOptions
 
 binaryToEncodings :: [Char] -> StrictBS.ByteString
 binaryToEncodings binary = LazyBS.toStrict $ encode $ encodings
-    where encodings = (Encodings {binary = binary,
-                                  hex = binaryToHex binary,
-                                  decimal = binaryToDecimal binary,
-                                  base64 = binaryToBase64 binary,
-                                  ascii = binaryToAscii binary}) 
+    where encodings = Encodings {binary = binary,
+                                 hex = binaryToHex binary,
+                                 decimal = binaryToDecimal binary,
+                                 base64 = binaryToBase64 binary,
+                                 ascii = binaryToAscii binary}
 
 toEncodings :: ([Char] -> [Char]) -> [Char] -> StrictBS.ByteString
 toEncodings toBinary input = binaryToEncodings $ toBinary input
@@ -71,7 +71,7 @@ asciiToBinary :: [Char] -> [Char]
 asciiToBinary xs = decimalToBinary $ unwords $ map (show . fromEnum) xs
 
 binaryToAscii :: [Char] -> [Char]
-binaryToAscii xs = map toEnum $ map read (words $ binaryToDecimal xs)
+binaryToAscii xs = map (toEnum . read) (words $ binaryToDecimal xs)
 
 --base64 related
 base64ToBinary :: [Char] -> [Char]
