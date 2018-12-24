@@ -1,20 +1,20 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 module Conversions
 (
- binaryToEncodings, 
- hexToEncodings,
- decimalToEncodings,
- base64ToEncodings,
- asciiToEncodings,
+ hexToBinary,
+ decimalToBinary,
+ base64ToBinary,
+ asciiToBinary,
+ toEncodings,
 ) where
 
 import Numeric
 import Data.Char
-import Data.Aeson
-import Data.Aeson
 import Data.List
 import Data.Aeson
+import GHC.Generics
 import qualified Data.ByteString.Base64 as B64 (encode, decodeLenient)
 import qualified Data.ByteString.Char8 as Char8 (pack, unpack)
 import qualified Data.ByteString.Lazy.Internal as LazyBS (ByteString)
@@ -24,55 +24,41 @@ import qualified Data.ByteString.Lazy as LazyBS (toStrict)
 data Encodings = Encodings {
     binary :: String,
     hex :: String,
-    decimal :: [Int],
+    decimal :: String,
     base64 :: String,
     ascii :: String
-} deriving Show
+} deriving (Generic, Show)
 
-instance ToJSON Encodings where 
-    toJSON (Encodings binary hex decimal base64 ascii) = object ["binary" .= binary, "hex" .= hex, 
-        "decimal" .= decimal, "base64" .= base64, "ascii" .= ascii]
+instance ToJSON Encodings where toEncoding = genericToEncoding defaultOptions
 
 binaryToEncodings :: [Char] -> StrictBS.ByteString
-binaryToEncodings binary =
-    let hex = binaryToHex binary
-        decimal = map binaryToDecimal (words binary)
-        base64 = binaryToBase64 binary
-        ascii = binaryToAscii binary
-        encodings = (Encodings {binary = binary, hex = hex, decimal = decimal, base64 = base64, ascii = ascii })
-    in LazyBS.toStrict $ encode $ encodings
+binaryToEncodings binary = LazyBS.toStrict $ encode $ encodings
+    where encodings = (Encodings {binary = binary,
+                                  hex = binaryToHex binary,
+                                  decimal = binaryToDecimal binary,
+                                  base64 = binaryToBase64 binary,
+                                  ascii = binaryToAscii binary}) 
 
-hexToEncodings :: [Char] -> StrictBS.ByteString
-hexToEncodings hex = binaryToEncodings $ hexToBinary hex
-
-decimalToEncodings :: Int -> StrictBS.ByteString
-decimalToEncodings decimal = binaryToEncodings $ decimalToBinary decimal
-
-base64ToEncodings :: [Char] -> StrictBS.ByteString
-base64ToEncodings base64 = binaryToEncodings $ base64ToBinary base64
-
-asciiToEncodings :: [Char] -> StrictBS.ByteString 
-asciiToEncodings ascii = binaryToEncodings $ asciiToBinary ascii
+toEncodings :: ([Char] -> [Char]) -> [Char] -> StrictBS.ByteString
+toEncodings toBinary input = binaryToEncodings $ toBinary input
 
 --hex related
 hexToBinary :: [Char] -> [Char]
-hexToBinary xs = unwords $ map (decimalToBinary . hexToDecimal) (words xs)
+hexToBinary xs = decimalToBinary $ unwords $ map hexToDecimal (words xs)
+    where hexToDecimal ys = show $ fst $ head $ readHex ys
 
 binaryToHex :: [Char] -> [Char]
-binaryToHex xs = unwords $ map (decimalToHex . binaryToDecimal) (words xs)
-
-hexToDecimal :: [Char] -> Int
-hexToDecimal xs =  fst $ head $ readHex xs
-
-decimalToHex :: Int -> [Char]
-decimalToHex x = showHex x ""
+binaryToHex xs = unwords $ map (decimalToHex . read) (words $ binaryToDecimal xs)
+    where decimalToHex x = showHex x ""
 
 --decimal related
-decimalToBinary :: Int -> [Char]
-decimalToBinary x = showIntAtBase 2 intToDigit x ""
+decimalToBinary :: [Char] -> [Char]
+decimalToBinary xs = unwords $ map numToBinary (words xs)
+    where numToBinary str = showIntAtBase 2 intToDigit (read str) "" 
 
-binaryToDecimal :: [Char] -> Int
-binaryToDecimal xs = fst $ head $ readInt 2 isValidBinaryDigit digitToInt xs
+binaryToDecimal :: [Char] -> [Char]
+binaryToDecimal xs = unwords $ map (show . binaryNumToDecimal) (words xs)
+    where binaryNumToDecimal ys = fst $ head $ readInt 2 isValidBinaryDigit digitToInt ys
 
 isValidBinaryDigit :: Char -> Bool
 isValidBinaryDigit x
@@ -82,21 +68,17 @@ isValidBinaryDigit x
 
 --ascii related
 asciiToBinary :: [Char] -> [Char]
-asciiToBinary xs = unwords $ map (decimalToBinary . fromEnum) xs 
+asciiToBinary xs = decimalToBinary $ unwords $ map (show . fromEnum) xs
 
 binaryToAscii :: [Char] -> [Char]
-binaryToAscii xs = map toEnum (map (binaryToDecimal) (words xs))
+binaryToAscii xs = map toEnum $ map read (words $ binaryToDecimal xs)
 
 --base64 related
 base64ToBinary :: [Char] -> [Char]
 base64ToBinary xs = asciiToBinary $ base64ToAscii xs
+    where base64ToAscii ys = Char8.unpack $ B64.decodeLenient $ Char8.pack ys
 
 binaryToBase64 :: [Char] -> [Char]
 binaryToBase64 xs = asciiToBase64 $ binaryToAscii xs
-
-asciiToBase64 :: [Char] -> [Char]
-asciiToBase64 xs = Char8.unpack $ B64.encode $ Char8.pack xs
-
-base64ToAscii :: [Char] -> [Char]
-base64ToAscii xs = Char8.unpack $ B64.decodeLenient $ Char8.pack $ xs
+    where asciiToBase64 ys = Char8.unpack $ B64.encode $ Char8.pack ys
 
